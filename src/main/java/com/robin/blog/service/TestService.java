@@ -1,7 +1,7 @@
 package com.robin.blog.service;
 
 import java.util.List;
-import com.robin.blog.bean.Test;
+import com.robin.blog.entity.Test;
 import org.springframework.stereotype.Service;
 
 @Service

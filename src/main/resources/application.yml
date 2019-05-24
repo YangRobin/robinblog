@@ -32,7 +32,7 @@ spring:
 # mybatis整合
 mybatis:
 #  config-location: classpath:mybatis.cfg.xml
-  type-aliases-package: com.robin.blog.bean
+  type-aliases-package: com.robin.blog.entity
   mapper-locations:
   - classpath:mappers/*.xml
 
