@@ -17,25 +17,10 @@ spring:
     #   validation-query：SELECT x
     #   connection-properties：
     #     characterEncoding: utf8
-
-  # thymeleaf 配置
-  thymeleaf:
-    prefix: classpath:/templates/
-    check-template-location: true
-    suffix: .html
-    encoding: UTF-8
-    servlet:
-      content-type: text/html
-    mode: HTML5
-    cache: false
-
 # mybatis整合
 mybatis:
 #  config-location: classpath:mybatis.cfg.xml
   type-aliases-package: com.robin.blog.bean
   mapper-locations:
   - classpath:mappers/*.xml
-
-
-
 

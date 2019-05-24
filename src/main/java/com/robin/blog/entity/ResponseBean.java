@@ -1,4 +1,4 @@
-package com.robin.blog.bean;
+package com.robin.blog.entity;
 
 public class ResponseBean {
 
