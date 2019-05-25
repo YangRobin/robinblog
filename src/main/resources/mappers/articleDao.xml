@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.robin.blog.dao.ArticlDao">
+	
+	<resultMap id="BaseResultMap" type="com.robin.blog.entity.ArticleEntity">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="title" jdbcType="VARCHAR" property="title" />
+		<result column="content" jdbcType="VARCHAR" property="content" />
+		<result column="avator" jdbcType="VARCHAR" property="avator" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="edit_time" jdbcType="TIMESTAMP" property="editTime" />
+		<result column="view_times" jdbcType="BIGINT" property="viewTimes" />
+		<result column="stars" jdbcType="BIGINT" property="stars" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id, title, content, avator, create_time, edit_time, 
+		view_times, stars
+	</sql>
+	
+	
+	<insert id="addArticle" parameterType="com.robin.blog.entity.ArticleEntity" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		INSERT INTO t_article
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="ArticleEntity.id != null">
+				id,
+			</if>
+			<if test="ArticleEntity.title !=null">
+				title,
+			</if>
+			<if test="ArticleEntity.content !=null">
+				content,
+			</if>
+			<if test="ArticleEntity.avator != null">
+				avator,
+			</if>
+			<if test="ArticleEntity.createTime != null">
+				create_time,
+			</if>
+			<if test="ArticleEntity.editTime !=null">
+				school_id,
+			</if>
+			<if test="ArticleEntity.viewTimes != null">
+				view_times,
+			</if>
+			<if test="ArticleEntity.stars != null">
+				stars,
+			</if>
+		</trim>
+		<trim prefix="values(" suffix=")" suffixOverrides=",">
+			<if test="ArticleEntity.id != null">
+				#{id},
+			</if>
+			<if test="ArticleEntity.title !=null">
+				#{title},
+			</if>
+			<if test="ArticleEntity.content !=null">
+				#{content},
+			</if>
+			<if test="ArticleEntity.avator != null">
+				#{avator},
+			</if>
+			<if test="ArticleEntity.createTime != null">
+				#{createtime},
+			</if>
+			<if test="ArticleEntity.editTime !=null">
+				#{edit_time},
+			</if>
+			<if test="ArticleEntity.viewTimes != null">
+				#{view_times},
+			</if>
+			<if test="ArticleEntity.stars != null">
+				#{stars},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="updateArticleById" parameterType="com.robin.blog.entity.ArticleEntity">
+		update t_article
+		<set>
+			<if test="title != null">
+				title = #{titl},
+			</if>
+			<if test="content != null">
+				content = #{conten},
+			</if>
+			<if test="avator != null">
+				avator = #{avato},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime},
+			</if>
+			<if test="editTime != null">
+				edit_time = #{editTime},
+			</if>
+			<if test="viewTimes != null">
+				view_times = #{viewTimes},
+			</if>
+			<if test="stars != null">
+				stars = #{stars},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<select id="selectArticleById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from  t_article
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	
+	<sql id="findPageWithWhere">
+		<where>
+			1=1
+			<if test="title != null and title != ''">
+	  		and title = #{title}
+			</if>
+			<if test="content != null and content != ''">
+				and content = #{content}
+			</if>
+			<if test="avator != null and avator != ''">
+				and avator = #{avator}
+			</if>
+			<if test="createTime != null">
+				and create_time = #{createTime}
+			</if>
+			<if test="editTime != null">
+				and edit_time = #{editTime}
+			</if>
+			<if test="viewTimes != null">
+				and view_times = #{viewTimes}
+			</if>
+			<if test="stars != null">
+				and stars = #{stars}
+			</if>
+		</where>
+	</sql>
+	
+	<select id="getArticleByPage" parameterType="com.robin.blog.entity.ArticleEntity" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from  t_article
+		<include refid="findPageWithWhere" />
+		limit #{page},#{pageSize}
+	</select>
+	
+</mapper>

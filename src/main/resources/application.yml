@@ -26,7 +26,7 @@ spring:
     encoding: UTF-8
     servlet:
       content-type: text/html
-    mode: HTML5
+    mode: HTML
     cache: false
 
 # mybatis整合
@@ -35,7 +35,8 @@ mybatis:
   type-aliases-package: com.robin.blog.entity
   mapper-locations:
   - classpath:mappers/*.xml
-
+  onfiguration:
+    map-underscore-to-camel-case=true:
 
 
 
