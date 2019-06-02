@@ -29,6 +29,6 @@ public interface ArticleService {
    * @param pageSize
    * @return
    */
-  public List<ArticleEntity> getArticleByPage(int page, int pageSize, ArticleEntity articleEntity);
+  public List<ArticleEntity> getArticleByPage(int page, int pageSize);
 
 }

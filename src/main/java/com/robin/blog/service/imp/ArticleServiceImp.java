@@ -24,8 +24,8 @@ public class ArticleServiceImp implements ArticleService {
   }
 
   @Override
-  public List<ArticleEntity> getArticleByPage(int page, int pageSize, ArticleEntity articleEntity) {
-    return articleDao.getArticleByPage(page, pageSize, articleEntity);
+  public List<ArticleEntity> getArticleByPage(int page, int pageSize) {
+    return articleDao.getArticleByPage((page-1)*pageSize, pageSize);
   }
 
 }
