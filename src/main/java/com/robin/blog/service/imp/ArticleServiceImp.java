@@ -19,13 +19,19 @@ public class ArticleServiceImp implements ArticleService {
   }
 
   @Override
-  public int updateArticleById(ArticleEntity articleEntity, int id) {
-    return articleDao.updateArticleById(articleEntity, id);
+  public int updateArticleById(ArticleEntity articleEntity) {
+    return articleDao.updateArticleById(articleEntity);
   }
 
   @Override
-  public List<ArticleEntity> getArticleByPage(int page, int pageSize) {
-    return articleDao.getArticleByPage((page-1)*pageSize, pageSize);
+  public List<ArticleEntity> getArticleByPage(int page, int pageSize, ArticleEntity articleEntity) {
+    int a = 0;
+    return articleDao.getArticleByPage((page - 1) * pageSize, pageSize, articleEntity);
+  }
+
+  @Override
+  public int getArticleCount() {
+    return articleDao.getTotalArticle();
   }
 
 }

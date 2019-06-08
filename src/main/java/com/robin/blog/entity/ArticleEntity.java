@@ -5,10 +5,11 @@ public class ArticleEntity {
   private String title;
   private String content;
   private String avator;
-  private int createTime;
-  private int editTime;
-  private int viewTimes;
-  private int stars;
+  private long createTime;
+  private long editTime;
+  private long viewTimes;
+  private long stars;
+  private int discard;
 
   public int getId() {
     return id;
@@ -42,36 +43,44 @@ public class ArticleEntity {
     this.avator = avator;
   }
 
-  public int getCreateTime() {
+  public long getCreateTime() {
     return createTime;
   }
 
-  public void setCreateTime(int createTime) {
+  public void setCreateTime(long createTime) {
     this.createTime = createTime;
   }
 
-  public int getEditTime() {
+  public long getEditTime() {
     return editTime;
   }
 
-  public void setEditTime(int editTime) {
+  public void setEditTime(long editTime) {
     this.editTime = editTime;
   }
 
-  public int getViewTimes() {
+  public long getViewTimes() {
     return viewTimes;
   }
 
-  public void setViewTimes(int viewTimes) {
+  public void setViewTimes(long viewTimes) {
     this.viewTimes = viewTimes;
   }
 
-  public int getStars() {
+  public long getStars() {
     return stars;
   }
 
-  public void setStars(int stars) {
+  public void setStars(long stars) {
     this.stars = stars;
+  }
+
+  public int getDiscard() {
+    return discard;
+  }
+
+  public void setDiscard(int discard) {
+    this.discard = discard;
   }
 
 }

@@ -1,10 +1,13 @@
 package com.robin.blog.entity;
 
+import java.util.Map;
+
 public class ResponseBean {
 
   private boolean success;
   private Object result;
   private String errorMsg;
+  private Map<String, Object> extInfo;
 
   public Object getResult() {
     return result;
@@ -28,6 +31,14 @@ public class ResponseBean {
 
   public void setSuccess(boolean success) {
     this.success = success;
+  }
+
+  public Map<String, Object> getExtInfo() {
+    return extInfo;
+  }
+
+  public void setExtInfo(Map<String, Object> extInfo) {
+    this.extInfo = extInfo;
   }
 
 }

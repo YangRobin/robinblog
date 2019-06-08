@@ -6,6 +6,8 @@ import com.robin.blog.entity.ArticleEntity;
 
 public interface ArticleService {
 
+  public int getArticleCount();
+
   /**
    * 新建文章
    * 
@@ -20,7 +22,7 @@ public interface ArticleService {
    * @param id
    * @return
    */
-  public int updateArticleById(ArticleEntity articleEntity, int id);
+  public int updateArticleById(ArticleEntity articleEntity);
 
   /**
    * 分页查询文章
@@ -29,6 +31,6 @@ public interface ArticleService {
    * @param pageSize
    * @return
    */
-  public List<ArticleEntity> getArticleByPage(int page, int pageSize);
+  public List<ArticleEntity> getArticleByPage(int page, int pageSize, ArticleEntity aritcle);
 
 }

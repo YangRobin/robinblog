@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.robin.blog.dao.ArticleDao">
-	
+
 	<resultMap id="BaseResultMap" type="com.robin.blog.entity.ArticleEntity">
 		<id column="id" jdbcType="INTEGER" property="id" />
 		<result column="title" jdbcType="VARCHAR" property="title" />
@@ -12,141 +12,149 @@
 		<result column="view_times" jdbcType="BIGINT" property="viewTimes" />
 		<result column="stars" jdbcType="BIGINT" property="stars" />
 	</resultMap>
-	
+
 	<sql id="Base_Column_List">
 		id, title, content, avator, create_time, edit_time, 
 		view_times, stars
 	</sql>
-	
-	
+
+
 	<insert id="addArticle" parameterType="com.robin.blog.entity.ArticleEntity" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
 		INSERT INTO t_article
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="ArticleEntity.id != null">
+			<if test="id != 0">
 				id,
 			</if>
-			<if test="ArticleEntity.title !=null">
+			<if test="title !=null">
 				title,
 			</if>
-			<if test="ArticleEntity.content !=null">
+			<if test="content !=null">
 				content,
 			</if>
-			<if test="ArticleEntity.avator != null">
+			<if test="avator != null">
 				avator,
 			</if>
-			<if test="ArticleEntity.createTime != null">
+			<if test="createTime != null">
 				create_time,
 			</if>
-			<if test="ArticleEntity.editTime !=null">
-				school_id,
+			<if test="editTime !=null">
+				edit_time,
 			</if>
-			<if test="ArticleEntity.viewTimes != null">
+			<if test="viewTimes != null">
 				view_times,
 			</if>
-			<if test="ArticleEntity.stars != null">
+			<if test="stars != null">
 				stars,
+			</if>
+			<if test="discard != null">
+				 discard,
 			</if>
 		</trim>
 		<trim prefix="values(" suffix=")" suffixOverrides=",">
-			<if test="ArticleEntity.id != null">
+			<if test="id != 0">
 				#{id},
 			</if>
-			<if test="ArticleEntity.title !=null">
+			<if test="title !=null">
 				#{title},
 			</if>
-			<if test="ArticleEntity.content !=null">
+			<if test="content !=null">
 				#{content},
 			</if>
-			<if test="ArticleEntity.avator != null">
+			<if test="avator != null">
 				#{avator},
 			</if>
-			<if test="ArticleEntity.createTime != null">
-				#{createtime},
+			<if test="createTime != null">
+				#{createTime},
 			</if>
-			<if test="ArticleEntity.editTime !=null">
-				#{edit_time},
+			<if test="editTime !=null">
+				#{editTime},
 			</if>
-			<if test="ArticleEntity.viewTimes != null">
-				#{view_times},
+			<if test="viewTimes != null">
+				#{viewTimes},
 			</if>
-			<if test="ArticleEntity.stars != null">
+			<if test="stars != null">
 				#{stars},
+			</if>
+			<if test="discard != null">
+				#{discard},
 			</if>
 		</trim>
 	</insert>
-	
+
 	<update id="updateArticleById" parameterType="com.robin.blog.entity.ArticleEntity">
 		update t_article
 		<set>
 			<if test="title != null">
-				title = #{titl},
+				title = #{title},
 			</if>
 			<if test="content != null">
-				content = #{conten},
+				content = #{content},
 			</if>
 			<if test="avator != null">
-				avator = #{avato},
+				avator = #{avator},
 			</if>
-			<if test="createTime != null">
+			<if test="createTime != 0">
 				create_time = #{createTime},
 			</if>
-			<if test="editTime != null">
+			<if test="editTime != 0">
 				edit_time = #{editTime},
 			</if>
-			<if test="viewTimes != null">
+			<if test="viewTimes != 0">
 				view_times = #{viewTimes},
 			</if>
-			<if test="stars != null">
+			<if test="stars != 0">
 				stars = #{stars},
+			</if>
+			<if test="discard != 0">
+				discard = #{discard},
 			</if>
 		</set>
 		where id = #{id}
 	</update>
-	
+
 	<select id="selectArticleById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from  t_article
 		where id = #{id,jdbcType=INTEGER}
 	</select>
-	
+
 	<sql id="findPageWithWhere">
-		<where>
-			1=1
-			<if test="title != null and title != ''">
-	  		and title = #{title}
+		<where> 1=1
+			<if test="article.title != null and article.title != ''">
+	  		and title = #{article.title}
 			</if>
-			<if test="content != null and content != ''">
-				and content = #{content}
+			<if test="article.content != null and article.content != ''">
+				and content = #{article.content}
 			</if>
-			<if test="avator != null and avator != ''">
-				and avator = #{avator}
+			<if test="article.avator != null and article.avator != ''">
+				and avator = #{article.avator}
 			</if>
-			<if test="createTime != null">
-				and create_time = #{createTime}
+			<if test="article.createTime != 0">
+				and create_time = #{article.createTime}
 			</if>
-			<if test="editTime != null">
-				and edit_time = #{editTime}
+			<if test="article.editTime != 0">
+				and edit_time = #{article.editTime}
 			</if>
-			<if test="viewTimes != null">
-				and view_times = #{viewTimes}
+			<if test="article.viewTimes != 0">
+				and view_times = #{article.viewTimes}
 			</if>
-			<if test="stars != null">
-				and stars = #{stars}
+			<if test="article.stars != 0">
+				and stars = #{article.stars}
 			</if>
 		</where>
 	</sql>
-	
-	<select 
-		id="getArticleByPage"
-	 	resultType="java.util.List" 
-	 	resultMap="BaseResultMap">
+
+	<select id="getArticleByPage" resultType="java.util.List" resultMap="BaseResultMap">
 		select
 			*
-		<!-- <include refid="Base_Column_List" /> -->
+								<!-- <include refid="Base_Column_List" /> -->
 		from  t_article
-		<!-- <include refid="findPageWithWhere" /> -->
+		<include refid="findPageWithWhere" />
 		limit #{page},#{pageSize}
 	</select>
-	
+	<select id="getTotalArticle" resultType="java.lang.Integer">
+		select count(*) from t_article
+	</select>
 </mapper>
+
